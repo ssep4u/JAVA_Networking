@@ -21,6 +21,9 @@ public class UDPServerMain {
         ds.receive(dp);
 
         //print message
-        System.out.println(dp.getData());
+        //10.97.123.123> Hi
+        String address = dp.getAddress().toString();
+        String message = new String(dp.getData());
+        System.out.println(address+"> "+message);
     }
 }
