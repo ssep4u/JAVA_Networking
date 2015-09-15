@@ -8,22 +8,27 @@ import java.net.SocketException;
  */
 public class UDPServerMain {
     public static void main(String[] args) throws IOException {
-        byte[] data = new byte[1024];
 
         //make socket
         DatagramSocket ds = new DatagramSocket(1226);
 
-        //make packet
-        DatagramPacket dp = new DatagramPacket(data, data.length);
+        while(true) {
+            byte[] data = new byte[1024];
+            //make packet
+            DatagramPacket dp = new DatagramPacket(data, data.length);
 
-        //receive
-        System.out.println("UDP Server standby...");
-        ds.receive(dp);
+            //receive
+            System.out.println("UDP Server standby...");
+            ds.receive(dp);
 
-        //print message
-        //10.97.123.123> Hi
-        String address = dp.getAddress().toString();
-        String message = new String(dp.getData());
-        System.out.println(address+"> "+message);
+            //print message
+            //10.97.123.123> Hi
+            String address = dp.getAddress().toString();
+            String message = new String(dp.getData()).trim();
+            System.out.println(address + "> " + message);
+
+            if(message.equals("bye"))
+                break;
+        }
     }
 }
