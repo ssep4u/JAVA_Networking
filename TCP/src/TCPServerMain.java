@@ -9,6 +9,8 @@ import java.net.Socket;
  */
 public class TCPServerMain {
     public static void main(String[] args) throws IOException {
+        System.out.println("TCP Server standby...");
+
         //make socket(accept)
         ServerSocket serverSocket = new ServerSocket(1019);
         Socket socket = serverSocket.accept();
@@ -21,6 +23,16 @@ public class TCPServerMain {
         String message = reader.readLine();
 
         //print message
-        System.out.println("주소> "+message);
+        System.out.println(socket.getInetAddress()+"> "+message);
     }
 }
+
+
+
+
+
+
+
+
+
+
