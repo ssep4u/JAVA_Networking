@@ -13,17 +13,23 @@ public class TCPServerMain {
 
         //make socket(accept)
         ServerSocket serverSocket = new ServerSocket(1019);
-        Socket socket = serverSocket.accept();
+        while(true) {
+            Socket socket = serverSocket.accept();
 
-        //make reader
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(socket.getInputStream()));
+            //make reader
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
 
-        //read
-        String message = reader.readLine();
+            //read
+            String message = reader.readLine();
 
-        //print message
-        System.out.println(socket.getInetAddress()+"> "+message);
+            //print message
+            System.out.println(socket.getInetAddress()+"> "+message);
+
+            if (message.equals("bye")) {
+                break;
+            }
+        }
     }
 }
 

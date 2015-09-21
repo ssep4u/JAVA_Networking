@@ -10,16 +10,22 @@ public class TCPClientMain {
     public static void main(String[] args) throws IOException {
         //input message
         String message = "";
-        Scanner scanner = new Scanner(System.in);
-        message = scanner.nextLine();
+        while(true) {
+            Scanner scanner = new Scanner(System.in);
+            message = scanner.nextLine();
 
-        //make socket
-        Socket socket = new Socket("localhost",1019);
+            //make socket
+            Socket socket = new Socket("localhost",1019);
 
-        //make writer
-        PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
+            //make writer
+            PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 
-        //write
-        writer.println(message);
+            //write
+            writer.println(message);
+
+            if (message.equals("bye")) {
+                break;
+            }
+        }
     }
 }
